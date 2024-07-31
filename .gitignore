@@ -1,71 +1,73 @@
-# Magento 2 directories and files to ignore
-
-# Node modules
-node_modules/
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Log files
-*.log
-
-# Generated files
-generated/
-var/
-pub/static/
-pub/media/
-
-# Composer files
-vendor/
-composer.lock
-
-# Configuration files
 .env
-.env.local
-.env.*.local
-.php_cs.cache
-.php-cs-fixer.cache
-
-# IDE files
-.idea/
-*.iml
-
-# Grunt, NPM and Yarn
-.grunt/
-.grunt-tasks/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-
-# PHPStorm
+/.buildpath
+/.cache
+/.metadata
+/.project
+/.settings
+/.vscode
+/.gitlab-ci.yml
+/ci.sh
+atlassian*
+/nbproject
+/robots.txt
+/pub/robots.txt
+/sitemap
+/sitemap.xml
+/pub/sitemap
+/pub/sitemap.xml
 /.idea
-
-# Mac system files
+/.gitattributes
+/app/config_sandbox
+/app/etc/env.php
+/app/code/Magento/TestModule*
+/lib/internal/flex/uploader/.actionScriptProperties
+/lib/internal/flex/uploader/.flexProperties
+/lib/internal/flex/uploader/.project
+/lib/internal/flex/uploader/.settings
+/lib/internal/flex/varien/.actionScriptProperties
+/lib/internal/flex/varien/.flexLibProperties
+/lib/internal/flex/varien/.project
+/lib/internal/flex/varien/.settings
+/node_modules
+/.grunt
+/Gruntfile.js
+/package.json
+/.php_cs
+/.php_cs.cache
+/grunt-config.json
+/pub/media/*.*
+!/pub/media/.htaccess
+/pub/media/attribute/*
+!/pub/media/attribute/.htaccess
+/pub/media/analytics/*
+/pub/media/catalog/*
+!/pub/media/catalog/.htaccess
+/pub/media/customer/*
+!/pub/media/customer/.htaccess
+/pub/media/downloadable/*
+!/pub/media/downloadable/.htaccess
+/pub/media/favicon/*
+/pub/media/import/*
+!/pub/media/import/.htaccess
+/pub/media/logo/*
+/pub/media/custom_options/*
+!/pub/media/custom_options/.htaccess
+/pub/media/theme/*
+/pub/media/theme_customization/*
+!/pub/media/theme_customization/.htaccess
+/pub/media/wysiwyg/*
+!/pub/media/wysiwyg/.htaccess
+/pub/media/tmp/*
+!/pub/media/tmp/.htaccess
+/pub/media/captcha/*
+/pub/static/*
+!/pub/static/.htaccess
+/var/*
+!/var/.htaccess
+/vendor/*
+!/vendor/.htaccess
+/generated/*
+!/generated/.htaccess
 .DS_Store
-
-# Windows system files
-Thumbs.db
-desktop.ini
-
-# Other
-*.swp
-*.swo
-*.bak
-*.backup
-*.tmp
-*.temp
-*.orig
-*.save
-*.old
-*.cache
-*.tar.gz
-
-# Specific files to ignore
-auth.json
-grunt-config.json.sample
-Gruntfile.js.sample
-nginx.conf.sample
-package.json.sample
-phpserver/
-phpserver.conf
+/app/etc/config.php
+vendor/

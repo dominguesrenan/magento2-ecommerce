@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <vars module="Magento_Theme">
+        <var name="logo_file">images/logo.svg</var>
+        <var name="logo_width">200</var>
+        <var name="logo_height">50</var>
+    </vars>
+</view>
