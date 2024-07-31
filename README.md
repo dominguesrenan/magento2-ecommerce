@@ -191,7 +191,7 @@ BLACKFIRE_SERVER_TOKEN=
 
 10. Limpar o cache do Magento:
     ```bash
-    bin/magento c:c; bin/magento c:f; bin/magento c:v
+    bin/magento c:c; bin/magento c:f
     ```
 
 ## Contribuição
