@@ -1,6 +1,3 @@
-Aqui está um exemplo de `README.md` para o seu projeto Magento 2:
-
-```markdown
 # Loja Magento 2
 
 Este projeto é uma loja online construída com Magento 2, hospedado em [GitHub](https://github.com/dominguesrenan/magento2-ecommerce.git). Ele contém diversas funcionalidades de e-commerce, incluindo gerenciamento de produtos, carrinho de compras, checkout e integração com sistemas de pagamento.
