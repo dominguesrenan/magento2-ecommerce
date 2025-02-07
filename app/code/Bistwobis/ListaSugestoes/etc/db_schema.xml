@@ -4,12 +4,13 @@
     <table name="bistwobis_lista_sugestoes" resource="default" engine="innodb" comment="Lista de Sugestões">
         <column xsi:type="int" name="lista_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Lista ID"/>
-        <column xsi:type="varchar" name="titulo" nullable="false" length="255" comment="Título"/>
+        <column xsi:type="varchar" name="titulo" nullable="false" length="255" comment="Título da Lista"/>
+        <column xsi:type="varchar" name="tipo_cliente" nullable="false" length="50" comment="Tipo de Cliente"/>
         <column xsi:type="text" name="description" nullable="true" comment="Descrição"/>
         <column xsi:type="text" name="customer_groups" nullable="true" comment="Customer Groups"/>
         <column xsi:type="text" name="produtos" nullable="true" comment="Produtos"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
-                comment="Created At"/>
+                comment="Data de Criação"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="lista_id"/>
         </constraint>
@@ -27,7 +28,7 @@
         </constraint>
         <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_PRODUTOS_LISTA_ID"
                    table="bistwobis_lista_sugestoes_produtos" column="lista_id"
-                   referenceTable="bistwobis_lista_sugestoes" referenceColumn="entity_id"
+                   referenceTable="bistwobis_lista_sugestoes" referenceColumn="lista_id"
                    onDelete="CASCADE"/>
         <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_PRODUTOS_PRODUCT_ID"
                    table="bistwobis_lista_sugestoes_produtos" column="product_id"
@@ -46,7 +47,7 @@
         </constraint>
         <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_CATEGORIAS_LISTA_ID"
                    table="bistwobis_lista_sugestoes_categorias" column="lista_id"
-                   referenceTable="bistwobis_lista_sugestoes" referenceColumn="entity_id"
+                   referenceTable="bistwobis_lista_sugestoes" referenceColumn="lista_id"
                    onDelete="CASCADE"/>
         <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_CATEGORIAS_CUSTOMER_GROUP_ID"
                    table="bistwobis_lista_sugestoes_categorias" column="customer_group_id"

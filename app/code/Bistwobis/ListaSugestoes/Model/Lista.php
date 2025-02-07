@@ -6,6 +6,17 @@ use Bistwobis\ListaSugestoes\Api\Data\ListaInterface;
 
 class Lista extends AbstractModel implements ListaInterface
 {
+    /**
+     * Constants for keys of data array
+     */
+    const ENTITY_ID = 'entity_id';
+    const TITLE = 'titulo';
+    const TIPO_CLIENTE = 'tipo_cliente';
+    const DESCRIPTION = 'description';
+    const CUSTOMER_GROUPS = 'customer_groups';
+    const PRODUTOS = 'produtos';
+    const CREATED_AT = 'created_at';
+
     protected $_idFieldName = 'lista_id';
     
     protected $_eventPrefix = 'bistwobis_lista_sugestoes';
@@ -29,7 +40,7 @@ class Lista extends AbstractModel implements ListaInterface
      */
     public function getId()
     {
-        return $this->getData(self::LISTA_ID);
+        return $this->getData(self::ENTITY_ID);
     }
 
     /**
@@ -40,7 +51,7 @@ class Lista extends AbstractModel implements ListaInterface
      */
     public function setId($id)
     {
-        return $this->setData(self::LISTA_ID, $id);
+        return $this->setData(self::ENTITY_ID, $id);
     }
 
     /**
@@ -50,7 +61,7 @@ class Lista extends AbstractModel implements ListaInterface
      */
     public function getTitulo()
     {
-        return $this->getData(self::TITULO);
+        return $this->getData(self::TITLE);
     }
 
     /**
@@ -61,7 +72,7 @@ class Lista extends AbstractModel implements ListaInterface
      */
     public function setTitulo($titulo)
     {
-        return $this->setData(self::TITULO, $titulo);
+        return $this->setData(self::TITLE, $titulo);
     }
 
     /**

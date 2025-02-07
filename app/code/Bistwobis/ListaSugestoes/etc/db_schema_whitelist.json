@@ -1,27 +1,16 @@
 {
     "bistwobis_lista_sugestoes": {
         "column": {
-            "entity_id": true,
-            "title": true,
+            "lista_id": true,
+            "titulo": true,
+            "tipo_cliente": true,
             "description": true,
-            "created_at": true,
-            "updated_at": true
+            "customer_groups": true,
+            "produtos": true,
+            "created_at": true
         },
         "constraint": {
             "PRIMARY": true
-        }
-    },
-    "bistwobis_lista_sugestoes_items": {
-        "column": {
-            "item_id": true,
-            "lista_id": true,
-            "product_id": true,
-            "position": true
-        },
-        "constraint": {
-            "PRIMARY": true,
-            "FK_C5ECE9CE2A78FED392C60E493E7A3F43": true,
-            "FK_B0B33B2C8F4F49C3530955F835494739": true
         }
     },
     "bistwobis_lista_sugestoes_produtos": {
@@ -33,7 +22,7 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "FK_3BB0A52EF2BD4099AB01EF5812F3DDA2": true,
+            "FK_84DDD1292B6E97CB949A79685E3F052D": true,
             "BISTWOBIS_LISTA_SUGESTOES_PRODUTOS_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
         }
     },
@@ -45,7 +34,7 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "FK_F768187B1C9B52CCBC983B1E63D0DECB": true,
+            "FK_8DA8247E0E113B1A19D06C8911102478": true,
             "FK_8D43DB478FBF1BEA41D03DE4D270426C": true
         }
     }

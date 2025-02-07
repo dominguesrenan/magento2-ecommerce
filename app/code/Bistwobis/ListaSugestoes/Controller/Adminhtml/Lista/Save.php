@@ -29,67 +29,38 @@ class Save extends Action
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
+        $data = $this->getRequest()->getPostValue();
         
-        try {
-            $rawData = $this->getRequest()->getPostValue();
-            $this->logger->info('Raw POST Data: ' . print_r($rawData, true));
-
-            // Extrai os dados do formulário
-            $data = $rawData['data'] ?? $rawData;
-            $this->logger->info('Processed Form Data: ' . print_r($data, true));
-
-            if (empty($data)) {
-                throw new LocalizedException(__('Invalid form data.'));
-            }
-
-            $model = $this->listFactory->create();
-
-            if (!empty($data['lista_id'])) {
-                $model->load($data['lista_id']);
-                if (!$model->getId()) {
-                    throw new LocalizedException(__('Esta lista não existe.'));
+        if ($data) {
+            try {
+                $model = $this->_objectManager->create(\Bistwobis\ListaSugestoes\Model\Lista::class);
+                
+                if (!empty($data['entity_id'])) {
+                    $model->load($data['entity_id']);
                 }
+                
+                // Use os setters do model
+                $model->setTitle($data['title'])
+                      ->setTipoCliente(is_array($data['customer_group_ids']) ? implode(',', $data['customer_group_ids']) : '')
+                      ->setDescription($data['description'] ?? '');
+                
+                $model->save();
+
+                $this->messageManager->addSuccessMessage(__('Lista salva com sucesso.'));
+                $this->dataPersistor->clear('lista_sugestoes');
+
+                return $resultRedirect->setPath('*/*/');
+            } catch (LocalizedException $e) {
+                $this->messageManager->addErrorMessage($e->getMessage());
+            } catch (\Exception $e) {
+                $this->messageManager->addExceptionMessage($e, __('Ocorreu um erro ao salvar a lista.'));
             }
 
-            // Prepara os dados para salvar
-            $saveData = [
-                'titulo' => $data['titulo'] ?? '',
-                'description' => $data['description'] ?? '',
-            ];
-
-            if (isset($data['customer_groups'])) {
-                $saveData['customer_groups'] = is_array($data['customer_groups']) 
-                    ? implode(',', $data['customer_groups']) 
-                    : $data['customer_groups'];
-            }
-
-            $this->logger->info('Save Data: ' . print_r($saveData, true));
-
-            $model->addData($saveData);
-            $this->logger->info('Model Data Before Save: ' . print_r($model->getData(), true));
-
-            $model->save();
-            $this->logger->info('Model Data After Save: ' . print_r($model->getData(), true));
-
-            $this->messageManager->addSuccessMessage(__('Lista salva com sucesso.'));
-            $this->dataPersistor->clear('lista_sugestoes');
-
-            if ($this->getRequest()->getParam('back')) {
-                return $resultRedirect->setPath('*/*/edit', ['lista_id' => $model->getId()]);
-            }
-            return $resultRedirect->setPath('*/*/');
-
-        } catch (LocalizedException $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
-            $this->logger->error('LocalizedException: ' . $e->getMessage());
-        } catch (\Exception $e) {
-            $this->messageManager->addExceptionMessage($e, __('Ocorreu um erro ao salvar a lista.'));
-            $this->logger->error('Exception: ' . $e->getMessage());
-            $this->logger->error('Stack trace: ' . $e->getTraceAsString());
+            $this->dataPersistor->set('lista_sugestoes', $data);
+            return $resultRedirect->setPath('*/*/edit', ['id' => $data['entity_id'] ?? null]);
         }
-
-        $this->dataPersistor->set('lista_sugestoes', $data ?? []);
-        return $resultRedirect->setPath('*/*/edit', ['lista_id' => $this->getRequest()->getParam('lista_id')]);
+        
+        return $resultRedirect->setPath('*/*/');
     }
 
     protected function _isAllowed()
