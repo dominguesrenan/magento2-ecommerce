@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/lista-sugestoes" method="GET">
+        <service class="Bistwobis\ListaSugestoes\Api\ListaRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/lista-sugestoes/:listaId" method="GET">
+        <service class="Bistwobis\ListaSugestoes\Api\ListaRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/lista-sugestoes/:listaId/produtos" method="GET">
+        <service class="Bistwobis\ListaSugestoes\Api\ListaProdutoRepositoryInterface" method="getByListaId"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes> 

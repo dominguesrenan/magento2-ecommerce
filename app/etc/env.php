@@ -138,10 +138,11 @@ return [
         'translate' => 1
     ],
     'downloadable_domains' => [
-        'localhost'
+        'localhost',
+        'lojamagento.test'
     ],
     'install' => [
-        'date' => 'Wed, 31 Jul 2024 14:24:05 +0000'
+        'date' => 'Fri, 07 Feb 2025 11:41:42 +0000'
     ],
     'system' => [
         'default' => [

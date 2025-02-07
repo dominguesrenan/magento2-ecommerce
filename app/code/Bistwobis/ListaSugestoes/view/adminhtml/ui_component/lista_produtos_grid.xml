@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">lista_produtos_grid.lista_produtos_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Bistwobis\ListaSugestoes\Block\Adminhtml\Lista\Edit\SaveProductsButton"/>
+        </buttons>
+        <spinner>lista_produtos_columns</spinner>
+        <deps>
+            <dep>lista_produtos_grid.lista_produtos_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="lista_produtos_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Bistwobis_ListaSugestoes::lista_manage</aclResource>
+        <dataProvider class="Bistwobis\ListaSugestoes\Ui\DataProvider\Product\ListaProductDataProvider" name="lista_produtos_grid_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="lista_produtos_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="thumbnail" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail">
+            <settings>
+                <altField>name</altField>
+                <hasPreview>1</hasPreview>
+                <label translate="true">Thumbnail</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Nome</label>
+            </settings>
+        </column>
+        <column name="sku">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">SKU</label>
+            </settings>
+        </column>
+        <column name="price" class="Magento\Catalog\Ui\Component\Listing\Columns\Price">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Preço</label>
+            </settings>
+        </column>
+    </columns>
+</listing> 

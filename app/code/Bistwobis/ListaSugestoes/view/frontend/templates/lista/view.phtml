@@ -1,0 +1,33 @@
+<?php
+/** @var \Bistwobis\ListaSugestoes\Block\Lista\View $block */
+$lista = $block->getLista();
+?>
+<div class="lista-sugestoes">
+    <h1><?= $block->escapeHtml($lista->getTitulo()) ?></h1>
+    <div class="lista-info">
+        <p><?= __('Tipo de Cliente: %1', $block->escapeHtml($lista->getTipoCliente())) ?></p>
+    </div>
+    
+    <?php if ($items = $block->getListaItems()): ?>
+        <div class="lista-items">
+            <?php foreach ($items as $item): ?>
+                <div class="item">
+                    <?php $product = $block->getProductById($item->getProductId()); ?>
+                    <div class="product-item-info">
+                        <h2><?= $block->escapeHtml($product->getName()) ?></h2>
+                        <div class="price-box">
+                            <?= $block->getProductPrice($product) ?>
+                        </div>
+                        <div class="actions">
+                            <?= $block->getAddToCartHtml($product) ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="message info empty">
+            <div><?= __('Esta lista não possui produtos.') ?></div>
+        </div>
+    <?php endif; ?>
+</div> 

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="bistwobis_lista_sugestoes" resource="default" engine="innodb" comment="Lista de Sugestões">
+        <column xsi:type="int" name="lista_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Lista ID"/>
+        <column xsi:type="varchar" name="titulo" nullable="false" length="255" comment="Título"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Descrição"/>
+        <column xsi:type="text" name="customer_groups" nullable="true" comment="Customer Groups"/>
+        <column xsi:type="text" name="produtos" nullable="true" comment="Produtos"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="lista_id"/>
+        </constraint>
+    </table>
+    
+    <table name="bistwobis_lista_sugestoes_produtos" resource="default" engine="innodb" comment="Lista Sugestoes Produtos">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="lista_id" padding="10" unsigned="true" nullable="false" comment="Lista ID"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" comment="Product ID"/>
+        <column xsi:type="int" name="position" padding="10" unsigned="true" nullable="false" default="0" 
+                comment="Position"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_PRODUTOS_LISTA_ID"
+                   table="bistwobis_lista_sugestoes_produtos" column="lista_id"
+                   referenceTable="bistwobis_lista_sugestoes" referenceColumn="entity_id"
+                   onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_PRODUTOS_PRODUCT_ID"
+                   table="bistwobis_lista_sugestoes_produtos" column="product_id"
+                   referenceTable="catalog_product_entity" referenceColumn="entity_id"
+                   onDelete="CASCADE"/>
+    </table>
+    
+    <table name="bistwobis_lista_sugestoes_categorias" resource="default" engine="innodb" comment="Lista Sugestoes Categorias">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="lista_id" padding="10" unsigned="true" nullable="false" comment="Lista ID"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" 
+                comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_CATEGORIAS_LISTA_ID"
+                   table="bistwobis_lista_sugestoes_categorias" column="lista_id"
+                   referenceTable="bistwobis_lista_sugestoes" referenceColumn="entity_id"
+                   onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_LISTA_SUGESTOES_CATEGORIAS_CUSTOMER_GROUP_ID"
+                   table="bistwobis_lista_sugestoes_categorias" column="customer_group_id"
+                   referenceTable="customer_group" referenceColumn="customer_group_id"
+                   onDelete="CASCADE"/>
+    </table>
+</schema>

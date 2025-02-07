@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">lista_sugestoes_lista_listing.lista_sugestoes_lista_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Lista</label>
+            </button>
+        </buttons>
+        <spinner>lista_sugestoes_lista_columns</spinner>
+        <deps>
+            <dep>lista_sugestoes_lista_listing.lista_sugestoes_lista_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="lista_sugestoes_lista_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Bistwobis_ListaSugestoes::lista</aclResource>
+        <dataProvider class="Bistwobis\ListaSugestoes\Ui\Component\Listing\DataProvider" name="lista_sugestoes_lista_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="lista_sugestoes_lista_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="title">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Bistwobis\ListaSugestoes\Ui\Component\Listing\Column\ListaActions">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing> 

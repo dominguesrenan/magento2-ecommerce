@@ -1,0 +1,54 @@
+& when (@media-common = true) {
+    .lista-sugestoes {
+        .lista-header {
+            margin-bottom: 2rem;
+            
+            h1 {
+                margin-bottom: 1rem;
+            }
+            
+            .lista-filters {
+                .category-filter {
+                    min-width: 200px;
+                    padding: 8px;
+                }
+            }
+        }
+
+        .listas-container {
+            margin: 20px 0;
+            
+            .lista-item {
+                margin-bottom: 2rem;
+                padding: 1.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                
+                .lista-content {
+                    margin-bottom: 1.5rem;
+                    
+                    h2 {
+                        margin: 0 0 1rem;
+                        font-size: 1.8rem;
+                        
+                        a {
+                            text-decoration: none;
+                            
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    
+                    .lista-description {
+                        color: #666;
+                    }
+                }
+                
+                .lista-actions {
+                    text-align: right;
+                }
+            }
+        }
+    }
+} 

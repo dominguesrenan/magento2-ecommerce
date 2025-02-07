@@ -1,0 +1,17 @@
+<div class="lista-sugestoes">
+    <!-- ko foreach: listas -->
+    <div class="lista-item">
+        <div class="lista-header">
+            <h2 data-bind="text: title"></h2>
+            <p data-bind="text: description"></p>
+        </div>
+        <div class="lista-actions">
+            <button type="button" 
+                    class="action primary"
+                    data-bind="click: $parent.addAllToCart.bind($parent, $data)">
+                <span>Adicionar Todos ao Carrinho</span>
+            </button>
+        </div>
+    </div>
+    <!-- /ko -->
+</div> 

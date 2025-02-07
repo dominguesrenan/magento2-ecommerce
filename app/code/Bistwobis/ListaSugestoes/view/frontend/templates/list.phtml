@@ -1,0 +1,36 @@
+<?php
+/** @var \Bistwobis\ListaSugestoes\Block\ListaSugestoes $block */
+?>
+<div class="lista-sugestoes">
+    <h1><?= $block->escapeHtml(__('Listas de Sugestões')) ?></h1>
+    <?php $listas = $block->getListas(); ?>
+    <?php if ($listas && $listas->getSize()): ?>
+        <div class="items">
+            <?php foreach ($listas as $lista): ?>
+                <div class="item">
+                    <h2><?= $block->escapeHtml($block->getListaTitle($lista)) ?></h2>
+                    <a href="<?= $block->getUrl('listasugestoes/lista/view', ['id' => $lista->getId()]) ?>"><?= $block->escapeHtml(__('Ver Produtos')) ?></a>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="message info empty">
+            <span><?= $block->escapeHtml(__('Nenhuma lista encontrada.')) ?></span>
+        </div>
+    <?php endif; ?>
+</div>
+
+<script type="text/x-magento-init">
+{
+    ".lista-sugestoes-container": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "listaSugestoesComponent": {
+                    "component": "Bistwobis_ListaSugestoes/js/view/lista-sugestoes",
+                    "listas": <?= json_encode($listas) ?>
+                }
+            }
+        }
+    }
+}
+</script> 

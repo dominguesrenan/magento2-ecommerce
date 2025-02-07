@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="bistwobis_listasugestoes" class="Bistwobis\ListaSugestoes\Block\Widget\ListaSugestoes">
+        <label translate="true">Lista de Sugestões</label>
+        <description translate="true">Exibe uma lista de sugestões de produtos</description>
+        <parameters>
+            <parameter name="lista_id" xsi:type="text" visible="true" required="true">
+                <label translate="true">ID da Lista</label>
+            </parameter>
+            <parameter name="title" xsi:type="text" visible="true">
+                <label translate="true">Título Personalizado</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/lista.phtml" selected="true">
+                        <label translate="true">Padrão</label>
+                    </option>
+                    <option name="grid" value="widget/lista_grid.phtml">
+                        <label translate="true">Grid</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets> 

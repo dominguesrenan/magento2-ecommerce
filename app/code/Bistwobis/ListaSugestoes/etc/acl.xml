@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Bistwobis_ListaSugestoes::lista" title="Lista de Sugestões" sortOrder="51">
+                    <resource id="Bistwobis_ListaSugestoes::lista_manage" title="Manage Lista" sortOrder="10"/>
+                    <resource id="Bistwobis_ListaSugestoes::lista_delete" title="Delete Lista" sortOrder="20"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config> 
