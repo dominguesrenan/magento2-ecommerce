@@ -13,6 +13,11 @@
                 <class>primary</class>
                 <label translate="true">Add New Product</label>
             </button>
+            <button name="save">
+                <url path="*/*/saveProducts"/>
+                <class>primary</class>
+                <label translate="true">Save Selected Products</label>
+            </button>
         </buttons>
         <spinner>lista_sugestoes_product_columns</spinner>
         <deps>
@@ -66,4 +71,15 @@
             </settings>
         </column>
     </columns>
+    <listingToolbar>
+        <massaction name="listing_massaction">
+            <action name="add">
+                <settings>
+                    <url path="*/*/saveProducts"/>
+                    <type>add</type>
+                    <label translate="true">Add to List</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
 </listing> 

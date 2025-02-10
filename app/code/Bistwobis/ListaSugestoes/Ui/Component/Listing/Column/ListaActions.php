@@ -8,6 +8,9 @@ use Magento\Framework\UrlInterface;
 
 class ListaActions extends Column
 {
+    const URL_PATH_DELETE = 'listasugestoes/lista/delete';
+    const URL_PATH_EDIT = 'listasugestoes/lista/edit';
+
     /**
      * @var UrlInterface
      */
@@ -45,20 +48,20 @@ class ListaActions extends Column
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
-                                'listasugestoes/lista/edit',
+                                static::URL_PATH_EDIT,
                                 ['id' => $item['lista_id']]
                             ),
                             'label' => __('Edit')
                         ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
-                                'listasugestoes/lista/delete',
+                                static::URL_PATH_DELETE,
                                 ['id' => $item['lista_id']]
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
                                 'title' => __('Delete Lista'),
-                                'message' => __('Tem certeza que deseja excluir esta lista?')
+                                'message' => __('Are you sure you want to delete this lista?')
                             ]
                         ]
                     ];

@@ -6,7 +6,8 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Bistwobis_ListaSugestoes::lista" title="Lista de Sugestões" sortOrder="51">
                     <resource id="Bistwobis_ListaSugestoes::lista_manage" title="Manage Lista" sortOrder="10"/>
-                    <resource id="Bistwobis_ListaSugestoes::lista_delete" title="Delete Lista" sortOrder="20"/>
+                    <resource id="Bistwobis_ListaSugestoes::lista_save" title="Save Lista" sortOrder="20"/>
+                    <resource id="Bistwobis_ListaSugestoes::lista_delete" title="Delete Lista" sortOrder="30"/>
                 </resource>
             </resource>
         </resources>

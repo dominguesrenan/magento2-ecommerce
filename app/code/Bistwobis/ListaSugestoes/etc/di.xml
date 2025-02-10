@@ -32,4 +32,10 @@
             <argument name="requestFieldName" xsi:type="string">id</argument>
         </arguments>
     </type>
+    
+    <type name="Bistwobis\ListaSugestoes\Controller\Adminhtml\Lista\Delete">
+        <arguments>
+            <argument name="logger" xsi:type="object">Psr\Log\LoggerInterface</argument>
+        </arguments>
+    </type>
 </config> 

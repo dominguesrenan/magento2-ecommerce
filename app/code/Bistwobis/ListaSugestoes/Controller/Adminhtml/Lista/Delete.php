@@ -3,69 +3,69 @@ namespace Bistwobis\ListaSugestoes\Controller\Adminhtml\Lista;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Bistwobis\ListaSugestoes\Model\ListaFactory;
+use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Exception\LocalizedException;
 
 class Delete extends Action
 {
-    /**
-     * @var ListaFactory
-     */
-    protected $listaFactory;
+    protected $resourceConnection;
 
-    /**
-     * @param Context $context
-     * @param ListaFactory $listaFactory
-     */
     public function __construct(
         Context $context,
-        ListaFactory $listaFactory
+        ResourceConnection $resourceConnection
     ) {
         parent::__construct($context);
-        $this->listaFactory = $listaFactory;
+        $this->resourceConnection = $resourceConnection;
     }
 
-    /**
-     * Delete action
-     *
-     * @return \Magento\Framework\Controller\ResultInterface
-     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
-        $id = $this->getRequest()->getParam('id');
-        
+        $id = (int)$this->getRequest()->getParam('id');
+
         if ($id) {
             try {
-                // Init model and delete
-                $model = $this->listaFactory->create();
-                $model->load($id);
-                $model->delete();
+                $connection = $this->resourceConnection->getConnection();
                 
-                // Display success message
-                $this->messageManager->addSuccessMessage(__('A lista foi excluída.'));
-                
-                // Redirect to grid
-                return $resultRedirect->setPath('*/*/');
+                // Get table names
+                $listaTable = $this->resourceConnection->getTableName('bistwobis_lista_sugestoes');
+                $produtosTable = $this->resourceConnection->getTableName('bistwobis_lista_sugestoes_produtos');
+                $categoriasTable = $this->resourceConnection->getTableName('bistwobis_lista_sugestoes_categorias');
+
+                // Begin transaction
+                $connection->beginTransaction();
+
+                try {
+                    // Delete related records first
+                    $connection->delete($produtosTable, ['lista_id = ?' => $id]);
+                    $connection->delete($categoriasTable, ['lista_id = ?' => $id]);
+                    
+                    // Delete the main record
+                    $result = $connection->delete($listaTable, ['lista_id = ?' => $id]);
+
+                    if ($result) {
+                        $connection->commit();
+                        $this->messageManager->addSuccessMessage(__('The lista has been deleted.'));
+                    } else {
+                        $connection->rollBack();
+                        $this->messageManager->addErrorMessage(__('Unable to delete the lista.'));
+                    }
+                } catch (\Exception $e) {
+                    $connection->rollBack();
+                    throw $e;
+                }
             } catch (\Exception $e) {
-                // Display error message
-                $this->messageManager->addErrorMessage($e->getMessage());
-                // Go back to edit form
-                return $resultRedirect->setPath('*/*/edit', ['id' => $id]);
+                $this->messageManager->addErrorMessage(
+                    __('Something went wrong while deleting the lista: %1', $e->getMessage())
+                );
             }
+        } else {
+            $this->messageManager->addErrorMessage(__('We can\'t find a lista to delete.'));
         }
-        
-        // Display error message
-        $this->messageManager->addErrorMessage(__('Não foi possível encontrar a lista para excluir.'));
-        
-        // Redirect to grid
+
         return $resultRedirect->setPath('*/*/');
     }
 
-    /**
-     * Check delete permission
-     *
-     * @return bool
-     */
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('Bistwobis_ListaSugestoes::lista_delete');
